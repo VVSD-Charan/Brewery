@@ -15,18 +15,25 @@ const Wrapper = styled.div`
     padding-top: 2rem;
   }
   .drink p {
-    font-weight: 700;
     text-transform: capitalize;
     line-height: 2;
     margin-bottom: 1rem;
+    font-size : large;
+    font-family:cursive;
   }
   .drink-data {
     margin-right: 0.5rem;
-    background: var(--primary-300);
+    background: #FFEEBB;
     padding: 0.25rem 0.5rem;
     border-radius: var(--borderRadius);
     color: var(--primary-700);
     letter-spacing: var(--letterSpacing);
+    font-family : Fantasy;
+    font-size : large;
+  }
+  .drink-data:hover{
+    color:white;
+    background:#090580;
   }
   .ing {
     display: inline-block;

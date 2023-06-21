@@ -1,4 +1,4 @@
-import { useLoaderData,Link } from 'react-router-dom';
+import { useLoaderData,Link,Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Wrapper from '../assets/wrappers/CocktailPage';
 
@@ -17,6 +17,11 @@ const Cocktail = () =>
 {
     const {id,data}=useLoaderData();
 
+    if(!data || !data.drinks)
+    {
+       return < Navigate to='/' />
+    }
+
     const singleDrink = data.drinks[0];
    
     const {
@@ -27,6 +32,8 @@ const Cocktail = () =>
         strGlass : glass,
         strInstructions : instructions
     } = singleDrink;
+
+    const validIngredients = Object.keys(singleDrink).filter((key)=> key.startsWith('strIngredient') && singleDrink[key]!==null);
 
     return (
         <Wrapper>
@@ -41,16 +48,27 @@ const Cocktail = () =>
                 <img src={image} alt={name} className='img' />
                 <div className="drink-info">
                     <p>
-                        <span className='drink-data'>name :</span> {name}
+                        <span className='drink-data'>name </span> {name}
                     </p>
                     <p>
-                        <span className='drink-data'>category :</span> {category}
+                        <span className='drink-data'>category </span> {category}
                     </p>
                     <p>
-                        <span className='drink-data'>info :</span> {info}
+                        <span className='drink-data'>info </span> {info}
                     </p>
                     <p>
-                        <span className='drink-data'>glass :</span> {glass}
+                        <span className='drink-data'>glass </span> {glass}
+                    </p>
+                    <p>
+                        <span className='drink-data'>Ingredients </span> 
+                        {
+                            validIngredients.map((item,index)=>
+                            {
+                                return <span className="ing" key={item}>
+                                    {singleDrink[item]} {index < validIngredients.length-1 ? ',':'.'}
+                                </span>
+                            })
+                        }
                     </p>
                     <p>
                         <span className='drink-data'>instructions :</span> {instructions}

@@ -8,12 +8,14 @@ const CocktailCard = ({image,name,id,info,glass}) =>
             <img src={image} alt={name} className='img' />
         </div>
         <div className="footer">
-            <h4>{name}</h4>
-            <h5>{glass}</h5>
-            <p>{info}</p>
-            <Link to={`/cocktail/${id}`} className='btn'>
-                Details
-            </Link>
+            <h4 style={{textAlign:'center'}}>{name}</h4>
+            <h5 style={{textAlign:'center'}}>{glass}</h5>
+            <p style={{textAlign:'center'}}>{info}</p>
+            <div style={{textAlign:'right'}}>
+                <Link to={`/cocktail/${id}`}  className='btn'>
+                    Details
+                </Link>
+            </div>
         </div>
     </Wrapper>
 };
